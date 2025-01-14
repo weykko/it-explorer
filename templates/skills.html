@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>ТОП-20 навыков по годам</h2>
+    {% for year, skills in skills_by_year.items %}
+        <div class="stat-section">
+            <h3>{{ year }} год</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Навык</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for skill in skills %}
+                        <tr>
+                            <td>{{ skill.skill }}</td>
+                            <td>{{ skill.count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% endblock %}

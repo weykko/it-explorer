@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Востребованность</h2>
+    
+    <!-- Динамика уровня зарплат по годам -->
+    <div class="stat-section">
+        <h3>Динамика уровня зарплат по годам</h3>
+        {% if salary_by_year %}
+            {% with graph=salary_by_year.0.graph %}
+                {% if graph %}
+                    <img src="{{ graph.image.url }}" alt="{{ graph.title }}">
+                    <p>{{ graph.description }}</p>
+                {% endif %}
+            {% endwith %}
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Год</th>
+                        <th>Средняя зарплата (руб)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for salary in salary_by_year %}
+                        <tr>
+                            <td>{{ salary.year }}</td>
+                            <td>{{ salary.average_salary|floatformat:2 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Данные отсутствуют.</p>
+        {% endif %}
+    </div>
+    
+    <!-- Динамика количества вакансий по годам -->
+    <div class="stat-section">
+        <h3>Динамика количества вакансий по годам</h3>
+        {% if count_by_year %}
+            {% with graph=count_by_year.0.graph %}
+                {% if graph %}
+                    <img src="{{ graph.image.url }}" alt="{{ graph.title }}">
+                    <p>{{ graph.description }}</p>
+                {% endif %}
+            {% endwith %}
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Год</th>
+                        <th>Количество вакансий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for count in count_by_year %}
+                        <tr>
+                            <td>{{ count.year }}</td>
+                            <td>{{ count.vacancy_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Данные отсутствуют.</p>
+        {% endif %}
+    </div>
+{% endblock %}
