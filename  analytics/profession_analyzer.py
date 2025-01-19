@@ -96,21 +96,18 @@ def vacancies_share_by_city(df):
         table_data=html
     )
 
-def main():
-    df = pd.read_csv('vacancies_2024.csv', dtype = {
-    'name': 'str',
-    'key_skills': 'str',
-    'salary_from': 'float',
-    'salary_to': 'float',
-    'salary_currency': 'str',
-    'area_name': 'str',
-    'published_at': 'str'
-})
 
-    salary_dynamics_by_year(df)
-    vacancies_count_by_year(df)
-    salary_by_city(df)
-    vacancies_share_by_city(df)
+def main():
+    df = pd.read_csv('vacancies.csv')
+    keywords = ['frontend', 'фронтенд', 'вёрстка', 'верстка', 'верста', 'front end', 'angular', 'html', 'css', 'react',
+                'vue']
+    regex = '|'.join(keywords)
+    prof_df = df[df['name'].str.contains(regex, case=False, na=False)]
+
+    salary_dynamics_by_year(prof_df)
+    vacancies_count_by_year(prof_df)
+    salary_by_city(prof_df)
+    vacancies_share_by_city(prof_df)
 
 
 if __name__ == '__main__':

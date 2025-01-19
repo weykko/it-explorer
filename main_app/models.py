@@ -6,7 +6,7 @@ from django.db import models
 class Statistics(models.Model):
     title = models.CharField(max_length=255)
     table_data = models.TextField()  # HTML representation of the table
-    # graph = models.ImageField(upload_to='graphs/')
+    graph = models.ImageField(upload_to='graphs/', null=True, blank=True)
 
     def __str__(self):
         return self.title

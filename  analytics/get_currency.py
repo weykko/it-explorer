@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 
-def fetch_currency_data(start_date, end_date, url, currencies):
+def fetch_currency_data(start_date, end_date, url):
     date = start_date
     rows = []
 
@@ -16,10 +16,9 @@ def fetch_currency_data(start_date, end_date, url, currencies):
 
         for element in root.findall('Valute'):
             currency = element.find('CharCode').text
-            if currency in currencies:
-                value = float(element.find('Value').text.replace(',', '.'))
-                nominal = int(element.find('Nominal').text)
-                row[currency] = round(value / nominal, 8)
+            value = float(element.find('Value').text.replace(',', '.'))
+            nominal = int(element.find('Nominal').text)
+            row[currency] = round(value / nominal, 8)
 
         rows.append(row)
         date = (date + timedelta(days=31)).replace(day=1)
@@ -37,5 +36,5 @@ if __name__ == '__main__':
     end_date = datetime(2024, 12, 1)
     url = 'https://www.cbr.ru/scripts/XML_daily.asp'
     currencies = ['BYR', 'USD', 'EUR', 'KZT', 'UAH', 'AZN', 'KGS', 'UZS', 'GEL']
-    data = fetch_currency_data(start_date, end_date, url, currencies)
+    data = fetch_currency_data(start_date, end_date, url)
     save_to_csv(data, 'currency.csv')
