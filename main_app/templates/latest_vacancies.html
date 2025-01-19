@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Последние вакансии frontend-разработчик</h1>
+{% if vacancies %}
+    {% for vacancy in vacancies %}
+        <div class="vacancy">
+            <h2>{{ vacancy.name }}</h2>
+            <p><strong>Описание:</strong> {{ vacancy.description|safe }}</p>
+            <p><strong>Навыки:</strong> {{ vacancy.skills }}</p>
+            <p><strong>Компания:</strong> {{ vacancy.company }}</p>
+            <p><strong>Оклад:</strong> {{ vacancy.salary }}</p>
+            <p><strong>Регион:</strong> {{ vacancy.region }}</p>
+            <p><strong>Дата публикации:</strong> {{ vacancy.published_at }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Нет вакансий за последние 24 часа.</p>
+{% endif %}
+{% endblock %}

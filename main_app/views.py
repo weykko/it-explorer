@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+
+import requests
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from .models import Statistics
@@ -38,3 +41,58 @@ def skills_view(request):
         'top_skills': get_object_or_404(Statistics, title='Динамика ТОП-20 навыков по годам для frontend-разработчика'),
     }
     return render(request, 'skills.html', context)
+
+
+def get_hh_vacancies():
+    # Параметры запроса к API HH
+    url = "https://api.hh.ru/vacancies"
+
+    # Установка временных рамок (последние 24 часа)
+    date_from = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S')
+    keywords = [
+        'frontend', 'фронтенд', 'вёрстка', 'верстка', 'верста',
+        'front end', 'angular', 'html', 'css', 'react', 'vue'
+    ]
+    # Объединение ключевых слов с помощью OR
+    search_query = " OR ".join(keywords)
+
+    params = {
+        "text": search_query,  # Поиск по ключевым словам
+        "date_from": date_from,
+        "per_page": 10,  # Максимум 10 вакансий
+        "order_by": "publication_time"  # Сортировка по дате публикации
+    }
+
+    response = requests.get(url, params=params)
+    vacancies = response.json().get('items', [])
+
+    result = []
+    for vacancy in vacancies:
+        # Выполняем дополнительный запрос для получения подробностей о вакансии
+        vacancy_details = requests.get(vacancy['url']).json()
+
+        result.append({
+            "name": vacancy.get("name"),
+            "description": vacancy_details.get("description"),
+            "skills": ", ".join([skill.get("name") for skill in vacancy_details.get("key_skills", [])]),
+            "company": vacancy.get("employer", {}).get("name"),
+            "salary": parse_salary(vacancy.get("salary")),
+            "region": vacancy.get("area", {}).get("name"),
+            "published_at": vacancy.get("published_at"),
+        })
+    return result
+
+
+def parse_salary(salary):
+    if not salary:
+        return "Не указано"
+    if not salary['from']:
+        return f"{salary['to']} {salary['currency']}"
+    if not salary['to']:
+        return f"{salary['from']} {salary['currency']}"
+    return f"{salary['from']} - {salary['to']} {salary['currency']}"
+
+
+def latest_vacancies_view(request):
+    vacancies = get_hh_vacancies()
+    return render(request, "latest_vacancies.html", {"vacancies": vacancies})
