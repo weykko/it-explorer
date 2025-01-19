@@ -14,7 +14,7 @@ def general_view(request):
         'vacancy_share_by_city': get_object_or_404(Statistics, title='Доля вакансий по городам'),
         'top_skills': get_object_or_404(Statistics, title='Динамика ТОП-20 навыков по годам'),
     }
-    return render(request, 'general_statistics.html', context)
+    return render(request, 'general.html', context)
 
 
 def demand_view(request):

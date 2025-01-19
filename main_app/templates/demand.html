@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Востребованность</h1>
+<section>
+    <h2>{{ salary_trends.title }}</h2>
+    {{ salary_trends.table_data|safe }}
+    <img src="{{ salary_trends.graph.url }}" alt="{{ salary_trends.title }}">
+</section>
+<section>
+    <h2>{{ vacancy_trends.title }}</h2>
+    {{ vacancy_trends.table_data|safe }}
+    <img src="{{ vacancy_trends.graph.url }}" alt="{{ vacancy_trends.title }}">
+</section>
+{% endblock %}

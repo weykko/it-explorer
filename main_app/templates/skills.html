@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Навыки</h1>
+  <section>
+      <h2>{{ top_skills.title }}</h2>
+      {{ top_skills.table_data|safe }}
+      <img src="{{ top_skills.graph.url }}" alt="{{ top_skills.title }}">
+  </section>
+{% endblock %}
