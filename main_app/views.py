@@ -57,7 +57,8 @@ def get_hh_vacancies():
     search_query = " OR ".join(keywords)
 
     params = {
-        "text": search_query,  # Поиск по ключевым словам
+        "text": 'frontend',  # Поиск по ключевым словам
+        'search_field': 'name',
         "date_from": date_from,
         "per_page": 10,  # Максимум 10 вакансий
         "order_by": "publication_time"  # Сортировка по дате публикации
