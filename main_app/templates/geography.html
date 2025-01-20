@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>География</h1>
 <section>
     <h2>{{ salary_by_city.title }}</h2>
-    {{ salary_by_city.table_data|safe }}
-    <img src="{{ salary_by_city.graph.url }}" alt="{{ salary_by_city.title }}">
+    <div class="content-box">
+        {{ salary_by_city.table_data|safe }}
+        <img src="{{ salary_by_city.graph.url }}" alt="{{ salary_by_city.title }}">
+    </div>
 </section>
 <section>
     <h2>{{ vacancy_share_by_city.title }}</h2>
+    <div class="content-box">
     {{ vacancy_share_by_city.table_data|safe }}
     <img src="{{ vacancy_share_by_city.graph.url }}" alt="{{ vacancy_share_by_city.title }}">
+    </div>
 </section>
 {% endblock %}

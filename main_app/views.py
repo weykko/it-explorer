@@ -49,12 +49,6 @@ def get_hh_vacancies():
 
     # Установка временных рамок (последние 24 часа)
     date_from = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S')
-    keywords = [
-        'frontend', 'фронтенд', 'вёрстка', 'верстка', 'верста',
-        'front end', 'angular', 'html', 'css', 'react', 'vue'
-    ]
-    # Объединение ключевых слов с помощью OR
-    search_query = " OR ".join(keywords)
 
     params = {
         "text": 'frontend',  # Поиск по ключевым словам
@@ -69,7 +63,7 @@ def get_hh_vacancies():
 
     result = []
     for vacancy in vacancies:
-        # Выполняем дополнительный запрос для получения подробностей о вакансии
+
         vacancy_details = requests.get(vacancy['url']).json()
 
         result.append({
@@ -79,7 +73,7 @@ def get_hh_vacancies():
             "company": vacancy.get("employer", {}).get("name"),
             "salary": parse_salary(vacancy.get("salary")),
             "region": vacancy.get("area", {}).get("name"),
-            "published_at": vacancy.get("published_at"),
+            "published_at": vacancy.get("published_at")[:10],
         })
     return result
 

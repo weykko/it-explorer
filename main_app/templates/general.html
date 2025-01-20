@@ -1,48 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Общая статистика</h1>
+<!--<h1>Общая статистика</h1>-->
 <section>
     <h2>{{ salary_trends.title }}</h2>
     <div class="content-box">
-    <div>
         {{ salary_trends.table_data|safe }}
-    </div>
     <img src="{{ salary_trends.graph.url }}" alt="{{ salary_trends.title }}">
     </div>
 </section>
 <section>
     <h2>{{ vacancy_trends.title }}</h2>
     <div class="content-box">
-    <div>
         {{ vacancy_trends.table_data|safe }}
-    </div>
     <img src="{{ vacancy_trends.graph.url }}" alt="{{ vacancy_trends.title }}">
     </div>
 </section>
 <section>
     <h2>{{ salary_by_city.title }}</h2>
     <div class="content-box">
-        <div>
             {{ salary_by_city.table_data|safe }}
-        </div>
     <img src="{{ salary_by_city.graph.url }}" alt="{{ salary_by_city.title }}">
     </div>
 </section>
 <section>
     <h2>{{ vacancy_share_by_city.title }}</h2>
     <div class="content-box">
-        <div>
             {{ vacancy_share_by_city.table_data|safe }}
-        </div>
         <img src="{{ vacancy_share_by_city.graph.url }}" alt="{{ vacancy_share_by_city.title }}">
     </div>
 </section>
-<section>
+<section class="section-skills">
     <h2>{{ top_skills.title }}</h2>
-    <div class="content-box">
-        <div>
+    <div class="content-box-skills">
             {{ top_skills.table_data|safe }}
-        </div>
         <img src="{{ top_skills.graph.url }}" alt="{{ top_skills.title }}">
     </div>
 </section>

@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Навыки</h1>
-  <section>
+  <section class="section-skills">
       <h2>{{ top_skills.title }}</h2>
+      <div class="content-box-skills">
       {{ top_skills.table_data|safe }}
       <img src="{{ top_skills.graph.url }}" alt="{{ top_skills.title }}">
+      </div>
   </section>
 {% endblock %}
