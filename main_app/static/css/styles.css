@@ -7,8 +7,8 @@
 body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    background-color: #f5f5f5; /* грязно-белый фон */
-    color: black;
+    background-color: #141414; /* грязно-белый фон */
+    color: #ffffff;
 }
 
 .container {
@@ -19,25 +19,25 @@ body {
 
 /* Шапка */
 header {
-    background-color: #FFDAB9; /* персиковый */
+    background-color: #222222; /* персиковый */
     padding: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #363738;
 }
 
 header h1 {
     margin: 0;
     font-size: 24px;
     text-align: center;
-    color: #333;
+    color: white;
 }
 
 /* Сайдбар */
 .sidebar {
-    width: 300px;
+    width: 260px;
     height: 100%;
-    background-color: white; /* персиковый */
-    border: 1px solid #ddd;
+    background-color: #222222; /* персиковый */
+    border: 1px solid #363738;
     padding: 25px 35px;
     margin-right: 15px;
     border-radius: 15px;
@@ -63,29 +63,34 @@ header h1 {
 .sidebar a {
     display: inline-block;
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
     font-weight: 500;
     transition: all 0.3s ease-in-out;
 }
 
 .sidebar a:hover {
     transform: scale(1.05);
+    color: #bfbfbf;
 }
 
 .sidebar ul li a.active {
-    color: #FFA07A;
+    color: #576cf7;
     transform: scale(1.05);
     transition: all 0.3s ease-in-out; /
 }
 
 section {
     box-sizing: border-box;
-    width: 1125px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px 25px 25px;
+    width: 1165px;
+    background-color: #222222;
+    border: 1px solid #363738;
+    padding: 30px 45px 45px;
     margin-bottom: 15px;
     border-radius: 15px;
+}
+
+.section-skills {
+    padding-bottom: 30px;
 }
 
 section h2 {
@@ -93,7 +98,7 @@ section h2 {
     margin: 0;
     font-size: 24px;
     line-height: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .content-box {
@@ -119,22 +124,14 @@ section img {
     padding: 2px;
 }
 
-.section-skills th, .section-skills td {
-    width: 51px;
-    padding: 2px;
-}
 
-.section-skills th{
-    width: 51px;
-    padding: 2px;
-}
 
 table {
     border-collapse: separate;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-    color: #333;
-    background-color: #f9f9f9;
+    color: #fff;
+    background-color: #2e2e2e;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -153,14 +150,15 @@ th:nth-child(2), td:nth-child(2) {
 }
 th {
     background-color: #576cf7;
-    color: black;
+    color: #fff;
     font-weight: 500;
 }
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #222222;
 }
 tr:hover {
-    background-color: #d1e7fd;
+    background-color: #576cf7;
+    opacity: 0.9;
     transition: background-color 0.3s;
 }
 caption {
@@ -177,21 +175,20 @@ section table {
 }
 
 section table th, section table td {
-    border: 1px solid #ddd;
     padding: 4px;
 }
 
 section table th {
-    background-color: #FFDAB9; /* персиковый */
+    background-color: #141414; /* персиковый */
     text-align: center;
 }
 
 /* Подвал */
 footer {
-    background-color: #FFDAB9; /* персиковый */
+    background-color: #222222; /* персиковый */
     padding: 15px;
     text-align: center;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #363738;
 }
 
 footer p {
