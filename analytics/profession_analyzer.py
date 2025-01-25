@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 from django.core.files.base import ContentFile
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'it_explorer.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 django.setup()
 
-from main_app.models import Statistics
+from app.models import Statistics
 
 
 def convert_to_rub(row):

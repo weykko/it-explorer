@@ -31,12 +31,20 @@ header {
     padding: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid #363738;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+header img {
+    width: 24px;
 }
 
 header h1 {
     margin: 0;
     font-size: 24px;
-    text-align: center;
+
     color: white;
 }
 
@@ -234,7 +242,7 @@ footer p {
 
 .vacancy-salary {
     font-size: 18px;
-    color: #FFA07A;
+    color: #576cf7;
     font-weight: bold;
     margin: 0;
 }
