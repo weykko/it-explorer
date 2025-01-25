@@ -8,4 +8,5 @@ urlpatterns = [
     path('geography/', views.geography_view, name='geography'),  # География
     path('skills/', views.skills_view, name='skills'),  # Навыки
     path('latest_vacancies/', views.latest_vacancies_view, name='latest_vacancies'),
+    path('api/vacancies/', views.get_hh_vacancies_json, name='get_hh_vacancies_json')
 ]

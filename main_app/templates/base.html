@@ -3,7 +3,7 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <title>it-explorer</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="shortcut icon" href="{% static 'media/icon.png' %}" type="image/x-icon">
 </head>
@@ -13,7 +13,7 @@
     </header>
     <div class="container">
         <nav class="sidebar">
-            <ul>
+            <ul class="sidebar-list">
                 <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Главная</a></li>
                 <li><a href="{% url 'general' %}" class="{% if request.path == '/general/' %}active{% endif %}">Общая статистика</a></li>
                 <li><a href="{% url 'demand' %}" class="{% if request.path == '/demand/' %}active{% endif %}">Востребованность</a></li>

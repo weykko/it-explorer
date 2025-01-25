@@ -1,11 +1,12 @@
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from .models import Statistics
 from datetime import datetime, timedelta
 import requests
 
+
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'title': 'Главная'})
 
 
 def general_view(request):
@@ -15,6 +16,7 @@ def general_view(request):
         'salary_by_city': get_object_or_404(Statistics, title='Уровень зарплат по городам'),
         'vacancy_share_by_city': get_object_or_404(Statistics, title='Доля вакансий по городам'),
         'top_skills': get_object_or_404(Statistics, title='Динамика ТОП-20 навыков по годам'),
+        'title': 'Общая статистика'
     }
     return render(request, 'general.html', context)
 
@@ -23,6 +25,7 @@ def demand_view(request):
     context = {
         'salary_trends': get_object_or_404(Statistics, title='Динамика уровня зарплат по годам для frontend-разработчика'),
         'vacancy_trends': get_object_or_404(Statistics, title='Динамика количества вакансий по годам для frontend-разработчика'),
+        'title': 'Востребованность'
     }
     return render(request, 'demand.html', context)
 
@@ -31,6 +34,7 @@ def geography_view(request):
     context = {
         'salary_by_city': get_object_or_404(Statistics, title='Уровень зарплат по городам для frontend-разработчика'),
         'vacancy_share_by_city': get_object_or_404(Statistics, title='Доля вакансий по городам для frontend-разработчика'),
+        'title': 'География'
     }
     return render(request, 'geography.html', context)
 
@@ -38,6 +42,7 @@ def geography_view(request):
 def skills_view(request):
     context = {
         'top_skills': get_object_or_404(Statistics, title='Динамика ТОП-20 навыков по годам для frontend-разработчика'),
+        'title': 'Навыки'
     }
     return render(request, 'skills.html', context)
 
@@ -88,5 +93,9 @@ def parse_salary(salary):
 
 
 def latest_vacancies_view(request):
+    return render(request, "latest_vacancies.html", {'title': 'Вакансии'})
+
+
+def get_hh_vacancies_json(request):
     vacancies = get_hh_vacancies()
-    return render(request, "latest_vacancies.html", {"vacancies": vacancies})
+    return JsonResponse({"vacancies": vacancies})

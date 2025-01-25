@@ -1,21 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if vacancies %}
-    {% for vacancy in vacancies %}
-    <section class="vacancy">
-        <div class="vacancy-header">
-            <h2 class="vacancy-title">{{ vacancy.name }}</h2>
-            <p class="vacancy-salary">{{ vacancy.salary }}</p>
-        </div>
-        <p class="vacancy-company">{{ vacancy.company }}, {{ vacancy.region }}</p>
-        <p class="vacancy-skills">{{ vacancy.skills }}</p>
-        <p class="vacancy-description">{{ vacancy.description|safe }}</p>
-        <div class="vacancy-footer">
-            <p class="vacancy-date">Дата публикации: {{ vacancy.published_at }}</p>
-        </div>
-    </section>
-    {% endfor %}
-{% else %}
-    <p>Нет вакансий за последние 24 часа.</p>
-{% endif %}
+<section class="loading" id="loading">
+    <div>
+
+    <div class="spinner"></div>
+    </div>
+</section>
+{% load static %}
+<div id="vacancies-container" style="display:none;"></div>
+
+<script>
+
+</script>
+<script type="module" src="{% static 'js/index.js' %}"></script>
+<script>
+    const apiUrl = "{% url 'get_hh_vacancies_json' %}"; // Передаём URL в JavaScript
+</script>
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 150px);
+    }
+
+    .loading {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align:center;
+    }
+
+    .spinner {
+        border: 15px solid #ffffff;
+        border-top: 15px solid #576cf7;
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        animation: spin 1s linear infinite;
+        margin: auto auto;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
 {% endblock %}

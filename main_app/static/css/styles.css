@@ -4,17 +4,25 @@
   box-sizing: border-box;
 }
 
+html {
+    overflow-y: scroll; /* Постоянный скролл */
+}
+
 body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
     background-color: #141414; /* грязно-белый фон */
     color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
-    max-width: 1440px;
+    width: 1440px;
     margin: 0 auto;
+    flex: 1;
 }
 
 /* Шапка */
